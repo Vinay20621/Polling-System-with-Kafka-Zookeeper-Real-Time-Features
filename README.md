@@ -1,7 +1,10 @@
 # Real-Time Polling System
 
-A scalable real-time polling system built with **Node.js**, **Express**, **PostgreSQL**, **Kafka**, and **WebSocket**. This system allows users to create polls, cast votes, and get real-time updates on voting results.
-
+Build a backend system that supports a high-concurrency polling feature using Kafka and
+Zookeeper. The system should allow multiple users to interact with polls simultaneously,
+ensure resiliency in case of failures, and include real-time poll updates using WebSockets
+along with a leaderboard feature. The system must ensure no votes are lost, even in the
+event of system failures.
 ## Features
 
 - Authentication with sign-up and sign-in functionality
@@ -77,39 +80,7 @@ bin/kafka-server-start.sh config/server.properties
 bin/kafka-topics.sh --create --topic poll-votes --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
 ```
 
-## Project Structure
 
-```bash
-src/
-├── config/
-│   ├── database.js
-│   └── kafka.js
-├── controllers/
-│   ├── auth.js
-│   ├── pollController.js
-│   ├── voteController.js
-│   └── leaderboardController.js
-├── middleware/
-│   └── authenticate.js
-├── models/
-│   ├── index.js
-│   ├── Poll.js
-│   ├── Option.js
-│   ├── Vote.js
-│   └── User.js
-├── routes/
-│   ├── pollRoutes.js
-│   ├── voteRoutes.js
-│   ├── leaderboardRoutes.js
-│   └── authRoutes.js
-├── services/
-│   ├── pollService.js
-│   ├── voteService.js
-│   ├── kafkaService.js
-│   ├── websocketService.js
-│   └── leaderboardService.js
-└── server.js
-```
 
 ## API Endpoints
 
@@ -217,17 +188,3 @@ node src/testWebSocketClient.js
 
 - Duplicate vote prevention
 
-## Contributing
-
-- Fork the repository
-
-- Create your feature branch (git checkout -b feature/AmazingFeature)
-
-- Commit your changes (git commit -m 'Add some AmazingFeature')
-
-- Push to the branch (git push origin feature/AmazingFeature)
-
-- Open a Pull Request
-
-## License
-This project is licensed under the MIT License.
